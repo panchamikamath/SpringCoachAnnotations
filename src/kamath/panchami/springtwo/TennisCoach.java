@@ -1,11 +1,17 @@
 package kamath.panchami.springtwo;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 //@Component("theTennisCoach")
 @Component
+//@Scope("singleton")
+//@Scope("prototype")
 public class TennisCoach implements Coach {
 
 	//field dependency injection : uses java reflection
@@ -38,6 +44,18 @@ public class TennisCoach implements Coach {
 	public TennisCoach(@Qualifier("RESTFortuneService") FortuneService theFortuneService) {
 		fortuneService = theFortuneService;
 	}*/
+	
+	//define my init method
+	@PostConstruct
+	public void doMyStartupStuff() {
+		System.out.println(">> TennisCoach : inside of doMyStartupStuff");
+	}
+	
+	//define my destroy method
+	@PreDestroy
+	public void doMyCleanupStuff() {
+		System.out.println(">> TennisCoach : inside of doMyCleanupStuff");
+	}
 	
 	@Override
 	public String getDailyWorkout() {
