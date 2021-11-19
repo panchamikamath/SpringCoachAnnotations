@@ -1,6 +1,9 @@
 package kamath.panchami.springtwo;
 
-public class HappyFortuneService implements FortuneService {
+import org.springframework.stereotype.Component;
+
+@Component
+public class SadFortuneService implements FortuneService {
 
 	@Override
 	public String getFortuneService(){
